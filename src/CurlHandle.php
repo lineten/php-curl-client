@@ -4,7 +4,7 @@
 namespace TH\CurlClient;
 
 use Psr\Http\Message\StreamInterface;
-use Slim\Psr7\Factory\StreamFactory;
+use Slim\Psr7\Stream;
 use TH\CurlClient\Exception\CurlClientException;
 
 /**
@@ -93,7 +93,7 @@ class CurlHandle
      */
     public function writeBody($ch, $str)
     {
-        $this->responseBody = $this->responseBody ?? StreamFactory::createStream('');
+        $this->responseBody = $this->responseBody ?? new Stream(fopen('php://temp', 'rw+'));
         return $this->responseBody->write($str);
     }
 
@@ -177,7 +177,7 @@ class CurlHandle
         if (!$res->hasError() && $this->responseCode > 0) {
             $res = $res->withStatus($this->responseCode);
             if ($this->responseBody instanceof StreamInterface) {
-                $body = StreamFactory::createStream('');
+                $body = new Stream(fopen('php://temp', 'rw+'));
                 $body->write($this->responseBody->__toString());
                 $res = $res->withBody($body);
             }
