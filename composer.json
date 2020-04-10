@@ -1,6 +1,6 @@
 {
     "name": "thlib/php-curl-client",
-    "description": "The simplest way of working with curl in PHP.",
+    "description": "A very simple and lightweight cURL helper for PHP",
     "license": "Unlicense",
     "authors": [
         {
@@ -8,7 +8,8 @@
             "email": "timoh89@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable" : true,
     "autoload": {
         "psr-4": {
             "TH\\CurlClient\\": "src/"
@@ -34,8 +35,8 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "thlib/php-constants": "dev-master",
-        "thlib/php-url": "dev-master",
+        "thlib/php-constants": "1.0.0",
+        "thlib/php-url": "1.0.0",
         "thlib/php-curl-multi-basic": "dev-master",
         "psr/http-message": "1.0.1",
         "slim/psr7": "^1.0"
