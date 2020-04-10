@@ -1,10 +1,12 @@
-Problems:
+**Problems solved:**
 1. Guzzle is huge and complicated.
 2. As functionality is added, the files become larger for everyone.
 
-Solutions:
+**Solutions:**
 1. Custom cURL abstraction.
 2. Classes don't grow, instead new classes are added for each new bit of functionality.
+
+Follows PSR-7
 
 Example usage:
 
@@ -75,4 +77,13 @@ $multi->send();
 $response = CurlClient::post('https://example.com')
     ->withJson(['key'=>'value'])
     ->withQueryParams(['test' => 1]);
+
+// Call it as an instance
+$client = new CurlClient;
+$request = $client->post('https://example.com');
+$request = $request->with(new Authorization('Bearer: abc'));
+
+/** @var CurlResponse $response PSR-7 Response with extra methods that are specific to curl */ 
+$response = $request->send(); 
 ```
+
