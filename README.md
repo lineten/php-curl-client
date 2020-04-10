@@ -1,4 +1,10 @@
-I wanted a plain and simple curl class that would be able to do sync and async requests, where class size would not grow, instead classes are added as functionality grows and can easy mix and match classes and callbacks from other sources.
+Problems:
+1. Guzzle is huge and complicated.
+2. As functionality is added, the files become larger for everyone.
+
+Solutions:
+1. Custom cURL abstraction.
+2. Classes don't grow, instead new classes are added for each new bit of functionality.
 
 Example usage:
 
