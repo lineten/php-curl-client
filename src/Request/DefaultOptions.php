@@ -12,7 +12,7 @@ class DefaultOptions
     {
         $handle->setOptions([
             CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HEADER => true,
+            CURLOPT_HEADER => false,
             CURLOPT_TIMEOUT => 30,
             CURLOPT_MAXREDIRS => 3,
             //CURLOPT_USERAGENT => "thlib/CurlClient",
