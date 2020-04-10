@@ -1,7 +1,6 @@
 {
     "name": "thlib/php-curl-client",
     "description": "A very simple and lightweight cURL helper for PHP",
-    "version": "1.0.0",
     "license": "MIT",
     "authors": [
         {
