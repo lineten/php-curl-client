@@ -1,3 +1,5 @@
+I wanted a plain and simple curl class that would be able to do sync and async requests, where class size would not grow, instead classes are added as functionality grows and can easy mix and match classes and callbacks from other sources.
+
 Example usage:
 
 ```php
