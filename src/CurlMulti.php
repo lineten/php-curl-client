@@ -1,6 +1,6 @@
 <?php
 
-namespace CurlClient;
+namespace TH\CurlClient;
 
 /**
  * Class CurlMulti
@@ -10,7 +10,7 @@ class CurlMulti
 {
     protected $handles = [];
 
-    public function add(CurlRequest $req, $callback)
+    public function add(CurlRequest $req, callable $callback)
     {
         $clone = clone $this;
         $clone->handles[] = [$req, $callback];
@@ -19,13 +19,13 @@ class CurlMulti
 
     public function send()
     {
-        $m = new Multi();
+        $m = new \TH\CurlMulti\CurlMulti();
         foreach ($this->handles as $x) {
             /** @var $req CurlRequest */
             list($req, $callback) = $x;
             $handle = $req->getHandle();
-            $m->add($handle->getCurlHandle(), function ($ch, $result) use ($handle, $callback) {
-                $callback($handle->getResponse(), $handle);
+            $m->add($handle->ch, function () use ($handle, $callback) {
+                call_user_func($callback, $handle->getResponse(), $handle);
             });
         }
         $m->run();

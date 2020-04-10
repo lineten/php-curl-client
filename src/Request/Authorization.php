@@ -1,10 +1,10 @@
 <?php
 
 
-namespace CurlClient\Request;
+namespace TH\CurlClient\Request;
 
-
-use CurlClient\CurlHandle;
+use TH\Constants\HttpRequestHeader;
+use TH\CurlClient\CurlHandle;
 
 class Authorization
 {
@@ -18,7 +18,7 @@ class Authorization
     public function __invoke(CurlHandle $handle)
     {
         $handle->setHeaders([
-            'Authorization' => $this->auth
+            HttpRequestHeader::AUTHORIZATION => $this->auth
         ]);
     }
 }

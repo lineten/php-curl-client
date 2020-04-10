@@ -1,14 +1,14 @@
 <?php
 
 
-namespace CurlClient;
+namespace TH\CurlClient;
 
-
-use Slim\Http\Response;
+use Slim\Psr7\Response;
+use TH\CurlClient\Exception\CurlClientException;
 
 /**
  * Class CurlResponse
- * @package CurlClient2
+ * @package CurlClient
  */
 class CurlResponse extends Response
 {
@@ -54,11 +54,12 @@ class CurlResponse extends Response
 
     /**
      * @return $this
+     * @throws CurlClientException
      */
     public function throwExceptionOnError()
     {
         foreach ($this->errors as $code => $message) {
-            throw new CurlException($message, $code);
+            throw new CurlClientException($message, $code);
         }
         return $this;
     }
@@ -88,8 +89,8 @@ class CurlResponse extends Response
     public function getDebugInfo()
     {
         return [
-            'info' => $this->getInfo(),
-            'errors' => $this->getErrors(),
+            'info' => $this->info,
+            'errors' => $this->errors,
             'headers' => $this->getHeaders(),
             'body' => $this->getBody()->__toString(),
         ];

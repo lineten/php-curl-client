@@ -1,13 +1,13 @@
 <?php
 
 
-namespace CurlClient;
+namespace TH\CurlClient;
 
-
-use CurlClient\Request\DefaultOptions;
-use CurlClient\Request\Options;
-use CurlClient\Request\Request;
-use CurlClient\Request\ValidateMethod;
+use Fig\Http\Message\RequestMethodInterface;
+use TH\CurlClient\Request\DefaultOptions;
+use TH\CurlClient\Request\Options;
+use TH\CurlClient\Request\Request;
+use TH\CurlClient\Request\ValidateMethod;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -44,7 +44,7 @@ class CurlClient
      */
     public static function post($url)
     {
-        return self::build('POST', $url);
+        return self::build(RequestMethodInterface::METHOD_POST, $url);
     }
 
     /**
@@ -53,7 +53,7 @@ class CurlClient
      */
     public static function get($url)
     {
-        return self::build('GET', $url);
+        return self::build(RequestMethodInterface::METHOD_GET, $url);
     }
 
     /**
@@ -62,7 +62,7 @@ class CurlClient
      */
     public static function put($url)
     {
-        return self::build('PUT', $url);
+        return self::build(RequestMethodInterface::METHOD_PUT, $url);
     }
 
     /**
@@ -71,6 +71,6 @@ class CurlClient
      */
     public static function delete($url)
     {
-        return self::build('DELETE', $url);
+        return self::build(RequestMethodInterface::METHOD_DELETE, $url);
     }
 }

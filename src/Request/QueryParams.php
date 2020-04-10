@@ -1,11 +1,11 @@
 <?php
 
 
-namespace CurlClient\Request;
+namespace TH\CurlClient\Request;
 
 
-use CurlClient\CurlHandle;
-use Url;
+use TH\CurlClient\CurlHandle;
+use TH\Url\Url;
 
 class QueryParams
 {

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace CurlClient\Request;
+namespace TH\CurlClient\Request;
 
 
-use CurlClient\CurlHandle;
+use TH\CurlClient\CurlHandle;
 
 class AllowInvalidSSL
 {

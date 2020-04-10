@@ -1,6 +1,6 @@
 {
-    "name": "thlib/php-curl-multi-basic",
-    "description": "The siplest way of working with curl in PHP.",
+    "name": "thlib/php-curl-client",
+    "description": "The simplest way of working with curl in PHP.",
     "license": "Unlicense",
     "authors": [
         {
@@ -8,13 +8,36 @@
             "email": "timoh89@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {
-        "php": ">=5.3.0"
-    },
+    "minimum-stability": "stable",
     "autoload": {
-        "psr-0": {
-            "THLib": "src/"
+        "psr-4": {
+            "TH\\CurlClient\\": "src/"
         }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/thlib/php-constants"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/thlib/php-url"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/thlib/php-curl-multi-basic"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/php-fig/http-message"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "thlib/php-constants": "dev-master",
+        "thlib/php-url": "dev-master",
+        "thlib/php-curl-multi-basic": "dev-master",
+        "psr/http-message": "1.0.1",
+        "slim/psr7": "^1.0"
     }
 }

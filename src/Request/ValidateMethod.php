@@ -1,11 +1,11 @@
 <?php
 
 
-namespace CurlClient\Request;
+namespace TH\CurlClient\Request;
 
-
-use CurlClient\CurlException;
-use CurlClient\CurlHandle;
+use Fig\Http\Message\RequestMethodInterface;
+use TH\CurlClient\CurlHandle;
+use TH\CurlClient\Exception\CurlClientException;
 
 class ValidateMethod
 {
@@ -14,8 +14,18 @@ class ValidateMethod
         $options = $handle->getOptions();
         if (isset($options[CURLOPT_CUSTOMREQUEST])) {
             $method = strtoupper($options[CURLOPT_CUSTOMREQUEST]);
-            if (!in_array($method, ["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT", "PATCH"])) {
-                throw new CurlException('Method "' . $method . '" is not allowed', 0);
+            if (!in_array($method, [
+                RequestMethodInterface::METHOD_GET,
+                RequestMethodInterface::METHOD_POST,
+                RequestMethodInterface::METHOD_PUT,
+                RequestMethodInterface::METHOD_DELETE,
+                RequestMethodInterface::METHOD_OPTIONS,
+                RequestMethodInterface::METHOD_HEAD,
+                RequestMethodInterface::METHOD_TRACE,
+                RequestMethodInterface::METHOD_CONNECT,
+                RequestMethodInterface::METHOD_PATCH,
+            ])) {
+                throw new CurlClientException('Method "' . $method . '" is not allowed', 0);
             }
         }
     }

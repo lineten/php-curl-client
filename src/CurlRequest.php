@@ -1,15 +1,13 @@
 <?php
 
 
-namespace CurlClient;
+namespace TH\CurlClient;
 
-
-use CurlClient\Request\Callback;
-use CurlClient\Request\FormData;
-use CurlClient\Request\Headers;
-use CurlClient\Request\Json;
-use CurlClient\Request\Options;
-use CurlClient\Request\QueryParams;
+use TH\CurlClient\Request\FormData;
+use TH\CurlClient\Request\Headers;
+use TH\CurlClient\Request\Json;
+use TH\CurlClient\Request\Options;
+use TH\CurlClient\Request\QueryParams;
 
 class CurlRequest
 {
@@ -43,11 +41,11 @@ class CurlRequest
      */
     public function withHeader(string $name, string $value)
     {
-        return $this->with(new Headers([$name => $value]));
+        return $this->with(new Headers([$name . ': ' . $value]));
     }
 
     /**
-     * @param $data
+     * @param mixed $data
      * @return static
      */
     public function withJson($data)

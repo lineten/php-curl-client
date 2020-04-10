@@ -1,11 +1,10 @@
 <?php
 
+namespace TH\CurlClient\Request;
 
-namespace CurlClient\Request;
-
-
-use Nova\Api\Constants\ContentType;
-use CurlClient\CurlHandle;
+use TH\Constants\ContentType;
+use TH\Constants\HttpRequestHeader;
+use TH\CurlClient\CurlHandle;
 
 class Json
 {
@@ -18,7 +17,9 @@ class Json
 
     public function __invoke(CurlHandle $handle)
     {
-        $handle->setBody(\Json::stringify($this->data));
-        $handle->setHeaders(['Content-Type' => ContentType::APPLICATION_JSON]);
+        $handle->setBody(json_encode($this->data));
+        $handle->setHeaders([
+            HttpRequestHeader::CONTENT_TYPE => ContentType::APPLICATION_JSON,
+        ]);
     }
 }

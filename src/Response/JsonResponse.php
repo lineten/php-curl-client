@@ -1,33 +1,45 @@
 <?php
 
 
-namespace CurlClient\Response;
+namespace TH\CurlClient\Response;
 
-
-use Nova\Api\Constants\ContentType;
-use Nova\Api\Exceptions\WebRequestException;
-use CurlClient\CurlResponse;
-use Json;
-use Psr\Http\Message\ResponseInterface;
+use TH\CurlClient\CurlResponse;
+use TH\Constants\ContentType;
+use TH\Constants\HttpRequestHeader;
+use TH\CurlClient\Exception\CurlClientException;
 
 class JsonResponse
 {
-    protected $json;
+    /** @var CurlResponse $res */
+    protected $res;
 
+    /**
+     * JsonResponse constructor.
+     * @param CurlResponse $res
+     */
     public function __construct(CurlResponse $res)
     {
-        $contentType = $res->getHeaderLine('Content-Type');
-
-        if (strpos($contentType, ContentType::APPLICATION_JSON) !== 0) {
-            throw (new WebRequestException('Invalid json response Content-Type "' . $contentType . '"', 9999))
-                ->setDebugData($res->getDebugInfo());
-        }
-
-        $this->json = Json::parse($res->getBody()->__toString());
+        $this->res = $res;
     }
 
-    public function getJson()
+    /**
+     * @param bool $assoc
+     * @return mixed
+     */
+    public function getJson($assoc = true)
     {
-        return $this->json;
+        return json_decode($this->res->getBody()->__toString(), $assoc);
+    }
+
+    /**
+     * Check if the provided response Content-Type is JSON
+     * @throws CurlClientException Provided Content-Type is not application/json
+     */
+    public function checkContentType()
+    {
+        $contentType = $this->res->getHeaderLine(HttpRequestHeader::CONTENT_TYPE);
+        if (strpos($contentType, ContentType::APPLICATION_JSON) !== 0) {
+            throw new CurlClientException('Invalid JSON response Content-Type "' . $contentType . '"');
+        }
     }
 }

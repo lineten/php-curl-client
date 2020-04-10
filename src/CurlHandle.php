@@ -1,7 +1,11 @@
 <?php
 
 
-namespace CurlClient;
+namespace TH\CurlClient;
+
+use Psr\Http\Message\StreamInterface;
+use Slim\Psr7\Factory\StreamFactory;
+use TH\CurlClient\Exception\CurlClientException;
 
 /**
  * A mutable CURL wrapper to simplify CURL usage due to the lack of documentation.
@@ -47,7 +51,7 @@ class CurlHandle
      */
     public function with(callable $callback)
     {
-        $callback($this);
+        call_user_func($callback, $this);
     }
 
     /**
@@ -89,16 +93,8 @@ class CurlHandle
      */
     public function writeBody($ch, $str)
     {
-        $this->responseBody = $this->responseBody ?? new Body();
+        $this->responseBody = $this->responseBody ?? StreamFactory::createStream('');
         return $this->responseBody->write($str);
-    }
-
-    /**
-     * @return false|resource
-     */
-    public function getCurlHandle()
-    {
-        return $this->ch;
     }
 
     /**
@@ -155,12 +151,12 @@ class CurlHandle
     }
 
     /**
-     * @throws CurlException Error fetching external resource
+     * @throws CurlClientException Error fetching external resource
      */
     public function exec()
     {
         if (curl_exec($this->ch) === false) {
-            throw new CurlException(curl_error($this->ch), curl_errno($this->ch));
+            throw new CurlClientException(curl_error($this->ch), curl_errno($this->ch));
         }
         $this->info = curl_getinfo($this->ch);
     }
@@ -180,8 +176,8 @@ class CurlHandle
 
         if (!$res->hasError() && $this->responseCode > 0) {
             $res = $res->withStatus($this->responseCode);
-            if ($this->responseBody instanceof Body) {
-                $body = new Body();
+            if ($this->responseBody instanceof StreamInterface) {
+                $body = StreamFactory::createStream('');
                 $body->write($this->responseBody->__toString());
                 $res = $res->withBody($body);
             }
