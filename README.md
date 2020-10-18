@@ -87,3 +87,8 @@ $request = $request->with(new Authorization('Bearer: abc'));
 $response = $request->send(); 
 ```
 
+To run tests
+
+```
+vendor/phpunit/phpunit/phpunit --bootstrap vendor/autoload.php tests
+```
