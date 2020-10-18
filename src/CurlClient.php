@@ -23,7 +23,7 @@ class CurlClient
     /**
      * @return CurlRequest
      */
-    public static function request()
+    public function request()
     {
         return (new CurlRequest(new CurlHandle()))->with(new DefaultOptions())->with(new ValidateMethod());
     }
@@ -33,44 +33,44 @@ class CurlClient
      * @param $url
      * @return CurlRequest
      */
-    public static function build(string $method, string $url)
+    public function build(string $method, string $url)
     {
-        return self::request()->with(new Request($method, $url));
+        return $this->request()->with(new Request($method, $url));
     }
 
     /**
      * @param $url
      * @return CurlRequest
      */
-    public static function post($url)
+    public function post($url)
     {
-        return self::build(RequestMethodInterface::METHOD_POST, $url);
+        return $this->build(RequestMethodInterface::METHOD_POST, $url);
     }
 
     /**
      * @param $url
      * @return CurlRequest
      */
-    public static function get($url)
+    public function get($url)
     {
-        return self::build(RequestMethodInterface::METHOD_GET, $url);
+        return $this->build(RequestMethodInterface::METHOD_GET, $url);
     }
 
     /**
      * @param $url
      * @return CurlRequest
      */
-    public static function put($url)
+    public function put($url)
     {
-        return self::build(RequestMethodInterface::METHOD_PUT, $url);
+        return $this->build(RequestMethodInterface::METHOD_PUT, $url);
     }
 
     /**
      * @param $url
      * @return CurlRequest
      */
-    public static function delete($url)
+    public function delete($url)
     {
-        return self::build(RequestMethodInterface::METHOD_DELETE, $url);
+        return $this->build(RequestMethodInterface::METHOD_DELETE, $url);
     }
 }
