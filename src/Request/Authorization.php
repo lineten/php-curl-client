@@ -3,7 +3,7 @@
 
 namespace TH\CurlClient\Request;
 
-use TH\Constants\HttpRequestHeader;
+use TH\HttpConstants\HttpRequestHeader;
 use TH\CurlClient\CurlHandle;
 
 class Authorization

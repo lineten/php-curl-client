@@ -3,8 +3,8 @@
 
 namespace TH\CurlClient\Request;
 
-use TH\Constants\ContentType;
-use TH\Constants\HttpRequestHeader;
+use TH\HttpConstants\ContentType;
+use TH\HttpConstants\HttpRequestHeader;
 use TH\CurlClient\CurlHandle;
 
 class Xml

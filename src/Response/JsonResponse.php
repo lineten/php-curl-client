@@ -4,8 +4,8 @@
 namespace TH\CurlClient\Response;
 
 use TH\CurlClient\CurlResponse;
-use TH\Constants\ContentType;
-use TH\Constants\HttpRequestHeader;
+use TH\HttpConstants\ContentType;
+use TH\HttpConstants\HttpRequestHeader;
 use TH\CurlClient\Exception\CurlClientException;
 
 class JsonResponse

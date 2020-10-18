@@ -15,8 +15,8 @@ Example usage:
 require 'vendor/autoload.php';
 header('Content-Type: text/plain;charset=utf-8');
 
-use TH\Constants\ContentType;
-use TH\Constants\HttpRequestHeader;
+use TH\HttpConstants\ContentType;
+use TH\HttpConstants\HttpRequestHeader;
 use TH\CurlClient\CurlMulti;
 use TH\CurlClient\CurlClient;
 use TH\CurlClient\CurlResponse;
