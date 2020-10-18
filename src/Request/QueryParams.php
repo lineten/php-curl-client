@@ -5,7 +5,7 @@ namespace TH\CurlClient\Request;
 
 
 use TH\CurlClient\CurlHandle;
-use TH\Url\Url;
+use TH\UrlModify\Url;
 
 class QueryParams
 {
