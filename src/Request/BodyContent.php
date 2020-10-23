@@ -1,15 +1,23 @@
 <?php
 
+
 namespace Lineten\CurlClient\Request;
 
+
+use Lineten\CurlClient\Constant\ContentType;
 use Lineten\CurlClient\CurlHandle;
 
+/**
+ * Class BodyContent
+ * @package Lineten\CurlClient\Request
+ */
 class BodyContent
 {
     public $data;
 
     /**
-     * @param string $data
+     * Json constructor.
+     * @param $data
      */
     public function __construct(string $data)
     {

@@ -1,12 +1,16 @@
 <?php
 
 
-namespace TH\CurlClient\Request;
+namespace Lineten\CurlClient\Request;
 
-use TH\HttpConstants\ContentType;
-use TH\HttpConstants\HttpRequestHeader;
-use TH\CurlClient\CurlHandle;
+use Lineten\CurlClient\Constant\HttpRequestHeader;
+use Lineten\CurlClient\Constant\ContentType;
+use Lineten\CurlClient\CurlHandle;
 
+/**
+ * Class Soap
+ * @package Lineten\CurlClient\Request
+ */
 class Soap
 {
     public $data;
@@ -27,11 +31,8 @@ class Soap
     {
         $handle->with(new Options([
             CURLOPT_POST => true,
-            CURLOPT_TIMEOUT => 300,
         ]));
-        $handle->setHeaders([
-            HttpRequestHeader::CONTENT_TYPE => ContentType::TEXT_XML,
-        ]);
+        $handle->setHeaders([HttpRequestHeader::CONTENT_TYPE => ContentType::TEXT_XML]);
         $handle->setBody($this->data);
     }
 }

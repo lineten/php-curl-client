@@ -15,15 +15,15 @@ Example usage:
 require 'vendor/autoload.php';
 header('Content-Type: text/plain;charset=utf-8');
 
-use TH\HttpConstants\ContentType;
-use TH\HttpConstants\HttpRequestHeader;
-use TH\CurlClient\CurlMulti;
-use TH\CurlClient\CurlClient;
-use TH\CurlClient\CurlResponse;
-use TH\CurlClient\Request\Authorization;
-use TH\CurlClient\Request\Headers;
-use TH\CurlClient\Request\Json;
-use TH\CurlClient\Request\QueryParams;
+use Lineten\CurlClient\Constant\ContentType;
+use Lineten\CurlClient\Constant\HttpRequestHeader;
+use Lineten\CurlClient\CurlMulti;
+use Lineten\CurlClient\CurlClient;
+use Lineten\CurlClient\CurlResponse;
+use Lineten\CurlClient\Request\Authorization;
+use Lineten\CurlClient\Request\Headers;
+use Lineten\CurlClient\Request\Json;
+use Lineten\CurlClient\Request\QueryParams;
 
 // Sync request
 echo 'Sync request'.PHP_EOL;
@@ -87,8 +87,3 @@ $request = $request->with(new Authorization('Bearer: abc'));
 $response = $request->send(); 
 ```
 
-To run tests
-
-```
-vendor/phpunit/phpunit/phpunit --bootstrap vendor/autoload.php tests
-```

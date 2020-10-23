@@ -1,10 +1,10 @@
 <?php
 
 
-namespace TH\CurlClient\Request;
+namespace Lineten\CurlClient\Request;
 
-use TH\HttpConstants\HttpRequestHeader;
-use TH\CurlClient\CurlHandle;
+use Lineten\CurlClient\Constant\HttpRequestHeader;
+use Lineten\CurlClient\CurlHandle;
 
 class Authorization
 {

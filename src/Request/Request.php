@@ -1,22 +1,34 @@
 <?php
 
 
-namespace TH\CurlClient\Request;
+namespace Lineten\CurlClient\Request;
 
 
-use TH\CurlClient\CurlHandle;
+use Lineten\CurlClient\CurlHandle;
 
+/**
+ * Class Request
+ * @package Lineten\CurlClient\Request
+ */
 class Request
 {
     public $url;
     public $method;
 
+    /**
+     * Request constructor.
+     * @param string $method
+     * @param string $url
+     */
     public function __construct(string $method, string $url)
     {
         $this->url = $url;
         $this->method = $method;
     }
 
+    /**
+     * @param CurlHandle $handle
+     */
     public function __invoke(CurlHandle $handle)
     {
         $handle->setOptions([

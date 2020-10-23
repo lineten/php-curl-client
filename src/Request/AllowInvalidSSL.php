@@ -1,13 +1,20 @@
 <?php
 
 
-namespace TH\CurlClient\Request;
+namespace Lineten\CurlClient\Request;
 
 
-use TH\CurlClient\CurlHandle;
+use Lineten\CurlClient\CurlHandle;
 
+/**
+ * Class AllowInvalidSSL
+ * @package Lineten\CurlClient\Request
+ */
 class AllowInvalidSSL
 {
+    /**
+     * @param CurlHandle $handle
+     */
     public function __invoke(CurlHandle $handle)
     {
         $handle->setOptions([

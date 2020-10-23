@@ -1,12 +1,12 @@
 <?php
 
 
-namespace TH\CurlClient\Response;
+namespace Lineten\CurlClient\Response;
 
-use TH\CurlClient\CurlResponse;
-use TH\HttpConstants\ContentType;
-use TH\HttpConstants\HttpRequestHeader;
-use TH\CurlClient\Exception\CurlClientException;
+use Lineten\CurlClient\CurlResponse;
+use Lineten\CurlClient\Constant\ContentType;
+use Lineten\CurlClient\Constant\HttpRequestHeader;
+use Lineten\CurlClient\Exception\CurlClientException;
 
 class JsonResponse
 {

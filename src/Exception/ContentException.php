@@ -1,6 +1,6 @@
 <?php
 namespace Lineten\CurlClient\Exception;
 
-class CurlClientException extends \Exception
+class ContentException extends \Exception
 {
 }

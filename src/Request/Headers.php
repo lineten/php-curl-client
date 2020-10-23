@@ -1,9 +1,9 @@
 <?php
 
 
-namespace TH\CurlClient\Request;
+namespace Lineten\CurlClient\Request;
 
-use TH\CurlClient\CurlHandle;
+use Lineten\CurlClient\CurlHandle;
 
 class Headers
 {

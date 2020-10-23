@@ -1,12 +1,16 @@
 <?php
 
 
-namespace TH\CurlClient\Request;
+namespace Lineten\CurlClient\Request;
 
-use TH\HttpConstants\ContentType;
-use TH\HttpConstants\HttpRequestHeader;
-use TH\CurlClient\CurlHandle;
+use Lineten\CurlClient\Constant\HttpRequestHeader;
+use Lineten\CurlClient\Constant\ContentType;
+use Lineten\CurlClient\CurlHandle;
 
+/**
+ * Class Xml
+ * @package Lineten\CurlClient\Request
+ */
 class Xml
 {
     public $data;
@@ -26,8 +30,6 @@ class Xml
     public function __invoke(CurlHandle $handle)
     {
         $handle->setBody($this->data);
-        $handle->setHeaders([
-            HttpRequestHeader::CONTENT_TYPE => ContentType::TEXT_XML
-        ]);
+        $handle->setHeaders([HttpRequestHeader::CONTENT_TYPE => ContentType::TEXT_XML]);
     }
 }

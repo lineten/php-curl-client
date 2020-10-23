@@ -1,11 +1,11 @@
 <?php
 
 
-namespace TH\CurlClient\Request;
+namespace Lineten\CurlClient\Request;
 
 use Fig\Http\Message\RequestMethodInterface;
-use TH\CurlClient\CurlHandle;
-use TH\CurlClient\Exception\CurlClientException;
+use Lineten\CurlClient\CurlHandle;
+use Lineten\CurlClient\Exception\CurlClientException;
 
 class ValidateMethod
 {

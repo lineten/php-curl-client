@@ -1,11 +1,12 @@
 <?php
 
 
-namespace TH\CurlClient;
+namespace Lineten\CurlClient;
 
+use Fig\Http\Message\RequestMethodInterface;
 use Psr\Http\Message\StreamInterface;
 use Slim\Psr7\Stream;
-use TH\CurlClient\Exception\CurlClientException;
+use Lineten\CurlClient\Exception\CurlClientException;
 
 /**
  * A mutable CURL wrapper to simplify CURL usage due to the lack of documentation.
@@ -95,6 +96,14 @@ class CurlHandle
     {
         $this->responseBody = $this->responseBody ?? new Stream(fopen('php://temp', 'rw+'));
         return $this->responseBody->write($str);
+    }
+
+    /**
+     * @return string
+     */
+    public function getMethod()
+    {
+        return strtoupper($this->options[CURLOPT_CUSTOMREQUEST] ?? RequestMethodInterface::METHOD_GET);
     }
 
     /**

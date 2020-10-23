@@ -1,10 +1,9 @@
 <?php
 
-namespace TH\CurlClient;
+namespace Lineten\CurlClient;
 
 /**
  * Class CurlMulti
- * @package CurlClient2
  */
 class CurlMulti
 {
@@ -19,7 +18,7 @@ class CurlMulti
 
     public function send()
     {
-        $m = new \TH\CurlMulti\CurlMulti();
+        $m = new Multi();
         foreach ($this->handles as $x) {
             /** @var $req CurlRequest */
             list($req, $callback) = $x;

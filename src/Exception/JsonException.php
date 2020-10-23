@@ -1,5 +1,5 @@
 <?php
-namespace TH\CurlClient\Exception;
+namespace Lineten\CurlClient\Exception;
 
 class JsonException extends \Exception
 {

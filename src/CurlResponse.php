@@ -1,10 +1,13 @@
 <?php
 
 
-namespace TH\CurlClient;
+namespace Lineten\CurlClient;
 
+use Lineten\CurlClient\Constant\ContentType;
+use Lineten\CurlClient\Constant\HttpRequestHeader;
+use Lineten\CurlClient\Exception\ContentException;
 use Slim\Psr7\Response;
-use TH\CurlClient\Exception\CurlClientException;
+use Lineten\CurlClient\Exception\CurlClientException;
 
 /**
  * Class CurlResponse
@@ -34,6 +37,19 @@ class CurlResponse extends Response
         $clone = clone $this;
         $clone->errors[$code] = $message;
         return $clone;
+    }
+
+    /**
+     * @param int $code
+     * @param string $reasonPhrase
+     * @return static
+     */
+    public function withStatus($code, $reasonPhrase = '')
+    {
+        if ($reasonPhrase === '' && !isset(static::$messages[$code])) {
+            $reasonPhrase = 'Non standard error code';
+        }
+        return parent::withStatus($code, $reasonPhrase);
     }
 
     /**
@@ -94,5 +110,45 @@ class CurlResponse extends Response
             'headers' => $this->getHeaders(),
             'body' => $this->getBody()->__toString(),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getBodyString()
+    {
+        return $this->getBody()->__toString();
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function getParsedBody()
+    {
+        $contentType = $this->getHeaderLine(HttpRequestHeader::CONTENT_TYPE);
+        if (ContentType::APPLICATION_JSON === $contentType) {
+            return json_decode($this->getBody()->__toString(), true);
+        }
+        if (ContentType::APPLICATION_FORM_URLENCODED === $contentType) {
+            parse_str($this->getBody()->__toString(), $data);
+            return $data;
+        }
+        throw new ContentException('Unknown content type "' .  $contentType . '"');
+    }
+
+    /**
+     * @param boolean $assoc
+     * @return mixed
+     */
+    public function getJson(bool $assoc = true)
+    {
+        $json = json_decode($this->getBody()->__toString(), $assoc);
+
+        if (JSON_ERROR_NONE !== json_last_error()) {
+            throw new ContentException('JSON Error: "' . json_last_error_msg() . '"');
+        }
+
+        return $json;
     }
 }
