@@ -76,7 +76,8 @@ $multi->send();
 // Use built-in helper functions
 $response = CurlClient::post('https://example.com')
     ->withJson(['key'=>'value'])
-    ->withQueryParams(['test' => 1]);
+    ->withQueryParams(['test' => 1])
+    ->send();
 
 // Call it as an instance
 $client = new CurlClient;
