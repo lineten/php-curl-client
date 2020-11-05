@@ -23,7 +23,7 @@ class CurlRequest
      * @param callable $callback
      * @return $this
      */
-    public function with(callable $callback): self
+    public function with(callable $callback)
     {
         $this->setup[] = $callback;
         return $this;
@@ -33,7 +33,7 @@ class CurlRequest
      * @param array $options
      * @return $this
      */
-    public function withOptions(array $options): self
+    public function withOptions(array $options)
     {
         return $this->with(new Options($options));
     }
@@ -43,7 +43,7 @@ class CurlRequest
      * @param string $value
      * @return $this
      */
-    public function withHeader(string $name, string $value): self
+    public function withHeader(string $name, string $value)
     {
         return $this->with(new Headers([$name . ': ' . $value]));
     }
@@ -52,7 +52,7 @@ class CurlRequest
      * @param $headers
      * @return $this
      */
-    public function withHeaders($headers): self
+    public function withHeaders($headers)
     {
         return $this->with(new Headers($headers));
     }
@@ -61,7 +61,7 @@ class CurlRequest
      * @param $data
      * @return $this
      */
-    public function withJson($data): self
+    public function withJson($data)
     {
         return $this->with(new Json($data));
     }
@@ -71,7 +71,7 @@ class CurlRequest
      * @param string $password
      * @return $this
      */
-    public function withBasicAuth(string $username, string $password): self
+    public function withBasicAuth(string $username, string $password)
     {
         return $this->with(new Options([CURLOPT_USERPWD => $username . ":" . $password]));
     }
@@ -80,7 +80,7 @@ class CurlRequest
      * @param string $data
      * @return $this
      */
-    public function withXml(string $data): self
+    public function withXml(string $data)
     {
         return $this->with(new Xml($data));
     }
@@ -89,7 +89,7 @@ class CurlRequest
      * @param string $request
      * @return $this
      */
-    public function withSoap(string $request): self
+    public function withSoap(string $request)
     {
         return $this->with(new Soap($request));
     }
@@ -98,7 +98,7 @@ class CurlRequest
      * @param string $data
      * @return $this
      */
-    public function withBody(string $data): self
+    public function withBody(string $data)
     {
         return $this->with(new BodyContent($data));
     }
@@ -107,7 +107,7 @@ class CurlRequest
      * @param $data
      * @return $this
      */
-    public function withForm($data): self
+    public function withForm($data)
     {
         return $this->with(new FormData($data));
     }
@@ -116,7 +116,7 @@ class CurlRequest
      * @param array $params
      * @return $this
      */
-    public function withQueryParams(array $params): self
+    public function withQueryParams(array $params)
     {
         return $this->with(new QueryParams($params));
     }
