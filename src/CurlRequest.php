@@ -21,7 +21,7 @@ class CurlRequest
 
     /**
      * @param callable $callback
-     * @return $this
+     * @return static
      */
     public function with(callable $callback)
     {
@@ -31,7 +31,7 @@ class CurlRequest
 
     /**
      * @param array $options
-     * @return $this
+     * @return static
      */
     public function withOptions(array $options)
     {
@@ -41,7 +41,7 @@ class CurlRequest
     /**
      * @param string $name
      * @param string $value
-     * @return $this
+     * @return static
      */
     public function withHeader(string $name, string $value)
     {
@@ -50,7 +50,7 @@ class CurlRequest
 
     /**
      * @param $headers
-     * @return $this
+     * @return static
      */
     public function withHeaders($headers)
     {
@@ -59,7 +59,7 @@ class CurlRequest
 
     /**
      * @param $data
-     * @return $this
+     * @return static
      */
     public function withJson($data)
     {
@@ -69,7 +69,7 @@ class CurlRequest
     /**
      * @param string $username
      * @param string $password
-     * @return $this
+     * @return static
      */
     public function withBasicAuth(string $username, string $password)
     {
@@ -78,7 +78,7 @@ class CurlRequest
 
     /**
      * @param string $data
-     * @return $this
+     * @return static
      */
     public function withXml(string $data)
     {
@@ -87,7 +87,7 @@ class CurlRequest
 
     /**
      * @param string $request
-     * @return $this
+     * @return static
      */
     public function withSoap(string $request)
     {
@@ -96,7 +96,7 @@ class CurlRequest
 
     /**
      * @param string $data
-     * @return $this
+     * @return static
      */
     public function withBody(string $data)
     {
@@ -105,7 +105,7 @@ class CurlRequest
 
     /**
      * @param $data
-     * @return $this
+     * @return static
      */
     public function withForm($data)
     {
@@ -114,7 +114,7 @@ class CurlRequest
 
     /**
      * @param array $params
-     * @return $this
+     * @return static
      */
     public function withQueryParams(array $params)
     {
@@ -123,7 +123,7 @@ class CurlRequest
 
     /**
      * @param integer $seconds
-     * @return $this
+     * @return static
      */
     public function withTimeout(int $seconds)
     {
