@@ -21,7 +21,7 @@ class CurlRequest
 
     /**
      * @param callable $callback
-     * @return CurlRequest
+     * @return $this
      */
     public function with(callable $callback): self
     {
@@ -31,7 +31,7 @@ class CurlRequest
 
     /**
      * @param array $options
-     * @return CurlRequest
+     * @return $this
      */
     public function withOptions(array $options): self
     {
@@ -41,7 +41,7 @@ class CurlRequest
     /**
      * @param string $name
      * @param string $value
-     * @return CurlRequest
+     * @return $this
      */
     public function withHeader(string $name, string $value): self
     {
@@ -50,7 +50,7 @@ class CurlRequest
 
     /**
      * @param $headers
-     * @return CurlRequest
+     * @return $this
      */
     public function withHeaders($headers): self
     {
@@ -59,7 +59,7 @@ class CurlRequest
 
     /**
      * @param $data
-     * @return CurlRequest
+     * @return $this
      */
     public function withJson($data): self
     {
@@ -69,7 +69,7 @@ class CurlRequest
     /**
      * @param string $username
      * @param string $password
-     * @return CurlRequest
+     * @return $this
      */
     public function withBasicAuth(string $username, string $password): self
     {
@@ -78,7 +78,7 @@ class CurlRequest
 
     /**
      * @param string $data
-     * @return CurlRequest
+     * @return $this
      */
     public function withXml(string $data): self
     {
@@ -87,7 +87,7 @@ class CurlRequest
 
     /**
      * @param string $request
-     * @return CurlRequest
+     * @return $this
      */
     public function withSoap(string $request): self
     {
@@ -96,7 +96,7 @@ class CurlRequest
 
     /**
      * @param string $data
-     * @return CurlRequest
+     * @return $this
      */
     public function withBody(string $data): self
     {
@@ -105,7 +105,7 @@ class CurlRequest
 
     /**
      * @param $data
-     * @return CurlRequest
+     * @return $this
      */
     public function withForm($data): self
     {
@@ -114,7 +114,7 @@ class CurlRequest
 
     /**
      * @param array $params
-     * @return CurlRequest
+     * @return $this
      */
     public function withQueryParams(array $params): self
     {
@@ -123,7 +123,7 @@ class CurlRequest
 
     /**
      * @param integer $seconds
-     * @return CurlRequest
+     * @return $this
      */
     public function withTimeout(int $seconds)
     {
