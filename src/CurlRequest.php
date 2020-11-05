@@ -21,20 +21,19 @@ class CurlRequest
 
     /**
      * @param callable $callback
-     * @return static
+     * @return CurlRequest
      */
-    public function with(callable $callback)
+    public function with(callable $callback): self
     {
-        $clone = clone $this;
-        $clone->setup[] = $callback;
-        return $clone;
+        $this->setup[] = $callback;
+        return $this;
     }
 
     /**
      * @param array $options
-     * @return static
+     * @return CurlRequest
      */
-    public function withOptions(array $options)
+    public function withOptions(array $options): self
     {
         return $this->with(new Options($options));
     }
@@ -42,9 +41,9 @@ class CurlRequest
     /**
      * @param string $name
      * @param string $value
-     * @return static
+     * @return CurlRequest
      */
-    public function withHeader(string $name, string $value)
+    public function withHeader(string $name, string $value): self
     {
         return $this->with(new Headers([$name . ': ' . $value]));
     }
@@ -53,16 +52,16 @@ class CurlRequest
      * @param $headers
      * @return CurlRequest
      */
-    public function withHeaders($headers)
+    public function withHeaders($headers): self
     {
         return $this->with(new Headers($headers));
     }
 
     /**
      * @param $data
-     * @return static
+     * @return CurlRequest
      */
-    public function withJson($data)
+    public function withJson($data): self
     {
         return $this->with(new Json($data));
     }
@@ -72,59 +71,59 @@ class CurlRequest
      * @param string $password
      * @return CurlRequest
      */
-    public function withBasicAuth(string $username, string $password)
+    public function withBasicAuth(string $username, string $password): self
     {
-        return $this->withOptions([CURLOPT_USERPWD => $username . ":" . $password]);
+        return $this->with(new Options([CURLOPT_USERPWD => $username . ":" . $password]));
     }
 
     /**
      * @param string $data
-     * @return static
+     * @return CurlRequest
      */
-    public function withXml(string $data)
+    public function withXml(string $data): self
     {
         return $this->with(new Xml($data));
     }
 
     /**
      * @param string $request
-     * @return static
+     * @return CurlRequest
      */
-    public function withSoap(string $request)
+    public function withSoap(string $request): self
     {
         return $this->with(new Soap($request));
     }
 
     /**
      * @param string $data
-     * @return static
+     * @return CurlRequest
      */
-    public function withBody(string $data)
+    public function withBody(string $data): self
     {
         return $this->with(new BodyContent($data));
     }
 
     /**
      * @param $data
-     * @return static
+     * @return CurlRequest
      */
-    public function withForm($data)
+    public function withForm($data): self
     {
         return $this->with(new FormData($data));
     }
 
     /**
      * @param array $params
-     * @return static
+     * @return CurlRequest
      */
-    public function withQueryParams(array $params)
+    public function withQueryParams(array $params): self
     {
         return $this->with(new QueryParams($params));
     }
 
     /**
      * @param integer $seconds
-     * @return static
+     * @return CurlRequest
      */
     public function withTimeout(int $seconds)
     {
@@ -147,6 +146,7 @@ class CurlRequest
 
     /**
      * @return CurlResponse
+     * @throws Exception\CurlClientException
      */
     public function send()
     {
