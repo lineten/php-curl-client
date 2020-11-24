@@ -126,7 +126,7 @@ class CurlResponse extends Response
      */
     public function getParsedBody()
     {
-        $contentType = $this->getHeaderLine(HttpRequestHeader::CONTENT_TYPE);
+        $contentType = $this->getContentType();
         if (ContentType::APPLICATION_JSON === $contentType) {
             return json_decode($this->getBody()->__toString(), true);
         }
@@ -135,6 +135,18 @@ class CurlResponse extends Response
             return $data;
         }
         throw new ContentException('Unknown content type "' .  $contentType . '"');
+    }
+    
+    /**
+     * Get the content type
+     * @return string
+     */
+    public function getContentType(): string
+    {
+        $headers = $this->getHeader(HttpRequestHeader::CONTENT_TYPE);
+        $header = array_pop($headers);
+        list($contentType) = explode(';', $header, 2);
+        return trim($contentType);
     }
 
     /**
