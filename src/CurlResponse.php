@@ -127,7 +127,7 @@ class CurlResponse extends Response
     public function getParsedBody()
     {
         $contentType = $this->getContentType();
-        if (ContentType::APPLICATION_JSON === $contentType) {
+        if (in_array($contentType, [ContentType::APPLICATION_JSON, 'application/problem+json'])) {
             return json_decode($this->getBody()->__toString(), true);
         }
         if (ContentType::APPLICATION_FORM_URLENCODED === $contentType) {
